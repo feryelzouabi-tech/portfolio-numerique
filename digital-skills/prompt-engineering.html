@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Engineering | Portfolio Feryel Zouabi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060812;
+            --card: rgba(17, 24, 43, 0.75);
+            --cyan: #00f2fe;
+            --blue: #4facfe;
+            --purple: #a855f7;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(0, 242, 254, 0.22);
+            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.12) 0%, transparent 45%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(6, 8, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { color: var(--cyan); font-weight: 600; font-size: 0.9rem; }
+
+        .box {
+            background: var(--card); backdrop-filter: blur(16px);
+            border: 1px solid var(--border); border-radius: 18px; padding: 2.2rem; margin-bottom: 2rem;
+        }
+        h1 { font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 800; color: #fff; }
+        .grad { background: linear-gradient(90deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { color: var(--cyan); margin: 1.8rem 0 0.8rem; font-size: 1.3rem; }
+        h3 { color: #c084fc; margin: 1.2rem 0 0.5rem; font-size: 1.05rem; }
+        p, li { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.6rem; }
+        ul { padding-left: 1.2rem; margin-bottom: 1rem; }
+
+        /* Grille avant/après */
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .bad-box { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); padding: 1rem; border-radius: 10px; }
+        .good-box { background: rgba(34, 197, 94, 0.08); border: 1px solid rgba(34, 197, 94, 0.3); padding: 1rem; border-radius: 10px; }
+        .bad-box h4 { color: #f87171; margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .good-box h4 { color: #4ade80; margin-bottom: 0.4rem; font-size: 0.9rem; }
+
+        /* Bibliothèque de Prompts */
+        .prompt-card { background: rgba(3, 5, 10, 0.6); border: 1px solid var(--border); padding: 1.2rem; border-radius: 12px; margin-bottom: 1rem; }
+        .prompt-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .prompt-title { font-weight: 700; color: #fff; font-size: 0.95rem; }
+        .copy-btn {
+            background: rgba(0, 242, 254, 0.15); color: var(--cyan); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 600;
+        }
+        .copy-btn:hover { background: var(--cyan); color: #060812; }
+        pre { background: #03050a; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto; margin-top: 0.5rem; }
+
+        .ia-box {
+            background: var(--card); border: 1px solid rgba(168, 85, 247, 0.35);
+            border-left: 4px solid var(--purple); border-radius: 16px; padding: 1.8rem; margin: 3rem 0;
+        }
+        .ia-box h3 { color: #c084fc; margin-bottom: 1rem; }
+        .ia-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.88rem; }
+        .ia-grid strong { color: #fff; display: block; margin-bottom: 3px; }
+        
+        footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+        @media (max-width: 768px) { .comparison-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-content">
+            <a href="../index.html" class="back-btn">← Retour à l'accueil</a>
+            <span style="font-size: 0.85rem; color: var(--muted);">Module : Digital Skills</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Section 1 : Méthodologie -->
+        <div class="box">
+            <h1>Chapitre 2 : <span class="grad">Prompt Engineering</span></h1>
+            <p>Le Prompt Engineering (ou l'art de concevoir des consignes pour l'intelligence artificielle) permet d'obtenir des résultats précis, structurés et exploitables en minimisant les erreurs (hallucinations).</p>
+
+            <h2>La structure idéale d'un prompt performant :</h2>
+            <ul>
+                <li><strong>Rôle (Persona) :</strong> Indiquer à l'IA qui elle doit incarner (ex: <em>"Agis en tant qu'expert en cybersécurité..."</em>).</li>
+                <li><strong>Contexte :</strong> Fournir les arrière-plans et la situation (ex: <em>"...pour une présentation devant des étudiants en informatique."</em>).</li>
+                <li><strong>Tâche :</strong> Préciser exactement ce que l'IA doit faire.</li>
+                <li><strong>Format :</strong> Définir la structure de la réponse attendue (tableau, puces, code Markdown, etc.).</li>
+            </ul>
+        </div>
+
+        <!-- Section 2 : Cas Pratiques Avant / Après -->
+        <div class="box">
+            <h2>🔍 3 Cas Pratiques : Avant / Après</h2>
+            
+            <h3>Cas 1 : Explication de code</h3>
+            <div class="comparison-grid">
+                <div class="bad-box">
+                    <h4>❌ Avant (Prompt faible)</h4>
+                    <p>"Explique-moi ce code C."</p>
+                </div>
+                <div class="good-box">
+                    <h4>✅ Après (Prompt structuré)</h4>
+                    <p>"Agis en tant que tuteur en programmation C. Explique-moi la fonction des pointeurs dans ce code en 3 points simples avec des analogies."</p>
+                </div>
+            </div>
+
+            <h3>Cas 2 : Rédaction d'un e-mail administratif</h3>
+            <div class="comparison-grid">
+                <div class="bad-box">
+                    <h4>❌ Avant (Prompt faible)</h4>
+                    <p>"Ecris un mail pour demander un stage."</p>
+                </div>
+                <div class="good-box">
+                    <h4>✅ Après (Prompt structuré)</h4>
+                    <p>"Rédige un e-mail professionnel en français destiné à un responsable RH pour demander un stage de fin de 1ère année en TI. Ton poli, concis, mettant en avant mes compétences en Python et Web."</p>
+                </div>
+            </div>
+
+            <h3>Cas 3 : Résumé de cours</h3>
+            <div class="comparison-grid">
+                <div class="bad-box">
+                    <h4>❌ Avant (Prompt faible)</h4>
+                    <p>"Résume ce cours de réseaux."</p>
+                </div>
+                <div class="good-box">
+                    <h4>✅ Après (Prompt structuré)</h4>
+                    <p>"Agis en tant qu'expert pédagogique. Résume ce cours sur le modèle OSI en extrayant uniquement les 4 couches principales sous forme de tableau comparatif."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 : Bibliothèque de Prompts -->
+        <div class="box">
+            <h2>📚 Bibliothèque de Prompts Utiles</h2>
+            
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="prompt-title">1. Correcteur de bugs de code</span>
+                    <button class="copy-btn" onclick="copyText('p1')">Copier</button>
+                </div>
+                <pre id="p1">Agis en tant qu'expert en développement. Analyse ce code [insérer le langage], identifie les erreurs de syntaxe ou de logique, explique la cause et donne la version corrigée.</pre>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="prompt-title">2. Générateur de Quiz de révision</span>
+                    <button class="copy-btn" onclick="copyText('p2')">Copier</button>
+                </div>
+                <pre id="p2">Agis en tant qu'examinateur universitaire. À partir de ce résumé de cours, génère 3 questions à choix multiples (QCM) avec correction détaillée.</pre>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="prompt-title">3. Traducteur technique simplifié</span>
+                    <button class="copy-btn" onclick="copyText('p3')">Copier</button>
+                </div>
+                <pre id="p3">Prends ce texte technique complexe en anglais et traduis-le en français en l'expliquant avec des termes simples adaptés à un étudiant de 1ère année.</pre>
+            </div>
+        </div>
+
+        <!-- Fiche Transparence IA -->
+        <aside class="ia-box">
+            <h3>🤖 Fiche Transparence IA — Prompt Engineering</h3>
+            <div class="ia-grid">
+                <div><strong>Outils utilisés :</strong><p>ChatGPT / Claude / Gemini (pour concevoir et tester les structures de prompts).</p></div>
+                <div><strong>Rôle de l'IA :</strong><p>Génération des exemples de cas pratiques et formatage du code de la bibliothèque.</p></div>
+                <div><strong>Réalisation personnelle :</strong><p>Sélection des cas d'usage adaptés aux besoins de la filière TI à l'ISET.</p></div>
+                <div><strong>Sources vérifiées :</strong><p>Bons usages académiques et méthodologies de prompt design.</p></div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026–2027 Feryel Zouabi — Technologie de l'Informatique (ISET Nabeul)</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Prompt copié dans le presse-papier ! 📋");
+            });
+        }
+    </script>
+</body>
+</html>
