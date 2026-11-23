@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python | Portfolio Feryel Zouabi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060812;
+            --card: rgba(17, 24, 43, 0.75);
+            --cyan: #00f2fe;
+            --blue: #4facfe;
+            --purple: #a855f7;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(0, 242, 254, 0.22);
+            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(79, 172, 254, 0.12) 0%, transparent 45%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(6, 8, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { color: var(--cyan); font-weight: 600; font-size: 0.9rem; }
+
+        .box {
+            background: var(--card); backdrop-filter: blur(16px);
+            border: 1px solid var(--border); border-radius: 18px; padding: 2.2rem; margin-bottom: 2rem;
+        }
+        h1 { font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 800; color: #fff; }
+        .grad { background: linear-gradient(90deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { color: var(--cyan); margin: 1.8rem 0 0.8rem; font-size: 1.3rem; }
+        h3 { color: #4facfe; margin: 1.2rem 0 0.5rem; font-size: 1.05rem; }
+        p, li { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.6rem; }
+        ul { padding-left: 1.2rem; margin-bottom: 1rem; }
+
+        pre {
+            background: #03050a; color: #e2e8f0; padding: 1.2rem; border-radius: 12px;
+            overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem;
+            border: 1px solid rgba(0, 242, 254, 0.25); margin: 1rem 0;
+        }
+
+        .ia-box {
+            background: var(--card); border: 1px solid rgba(168, 85, 247, 0.35);
+            border-left: 4px solid var(--purple); border-radius: 16px; padding: 1.8rem; margin: 3rem 0;
+        }
+        .ia-box h3 { color: #c084fc; margin-bottom: 1rem; }
+        .ia-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.88rem; }
+        .ia-grid strong { color: #fff; display: block; margin-bottom: 3px; }
+        
+        footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-content">
+            <a href="../index.html" class="back-btn">← Retour à l'accueil</a>
+            <span style="font-size: 0.85rem; color: var(--muted);">Module : Développement (UE 2)</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Section 1 : Introduction -->
+        <div class="box">
+            <h1>Module : <span class="grad">Programmation Python</span></h1>
+            <p>Ce module regroupe les bases de la programmation en Python (variables, structures conditionnelles, boucles, fonctions) appliquées à travers 3 mini-projets pratiques réalisés dans le cadre du semestre.</p>
+        </div>
+
+        <!-- Section 2 : Projets Python -->
+        <div class="box">
+            <h2>🐍 3 Mini-Projets Commentés</h2>
+
+            <h3>Projet 1 : Calculateur de Moyenne Semestrielle</h3>
+            <p>Un script simple permettant de calculer la moyenne générale d'un étudiant en TI à partir des notes de TP et de contrôles.</p>
+            <pre><code>def calculer_moyenne():
+    print("--- Calculateur de Moyenne ISETN ---")
+    note_tp = float(input("Entrez la note de TP : "))
+    note_ds = float(input("Entrez la note de DS : "))
+    note_exam = float(input("Entrez la note d'Examen : "))
+    
+    moyenne = (note_tp * 0.2) + (note_ds * 0.3) + (note_exam * 0.5)
+    print(f"Votre moyenne pondérée est : {moyenne:.2f} / 20")
+
+calculer_moyenne()</code></pre>
+
+            <h3>Projet 2 : Jeu du Nombre Mystère (Boucles & Conditions)</h3>
+            <p>Un jeu interactif où l'utilisateur doit deviner un nombre aléatoire généré par le programme.</p>
+            <pre><code>import random
+
+def deviner_nombre():
+    secret = random.randint(1, 20)
+    essai = 0
+    print("Devinez le nombre entre 1 et 20 !")
+    
+    while True:
+        choix = int(input("Votre proposition : "))
+        essai += 1
+        if choix < secret:
+            print("C'est plus haut ! 📈")
+        elif choix > secret:
+            print("C'est plus bas ! 📉")
+        else:
+            print(f"Bravo ! Trouvé en {essai} essais. 🎯")
+            break
+
+deviner_nombre()</code></pre>
+
+            <h3>Projet 3 : Gestionnaire de Liste de Tâches (To-Do List)</h3>
+            <p>Manipulation de listes et boucles pour ajouter et afficher des tâches de révision.</p>
+            <pre><code>tâches = []
+
+def afficher_taches():
+    print("\n--- Mes Tâches ---")
+    for i, t in enumerate(tâches, 1):
+        print(f"{i}. {t}")
+
+# Ajout d'exemples
+tâches.append("Reviser l'Algorithmique")
+tâches.append("Préparer le TP de C")
+afficher_taches()</code></pre>
+        </div>
+
+        <!-- Fiche Transparence IA -->
+        <aside class="ia-box">
+            <h3>🤖 Fiche Transparence IA — Python</h3>
+            <div class="ia-grid">
+                <div><strong>Outils utilisés :</strong><p>VS Code, Python Interpreter, ChatGPT (aide au formatage des scripts).</p></div>
+                <div><strong>Rôle de l'IA :</strong><p>Génération de la structure des codes et commentaires explicatifs.</p></div>
+                <div><strong>Réalisation personnelle :</strong><p>Tests des scripts dans le terminal PowerShell, adaptation aux critères des TPs de l'ISET.</p></div>
+                <div><strong>Sources vérifiées :</strong><p>Cours et TD de programmation Python (ISET Nabeul).</p></div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026–2027 Feryel Zouabi — Technologie de l'Informatique (ISET Nabeul)</p>
+        </div>
+    </footer>
+</body>
+</html>

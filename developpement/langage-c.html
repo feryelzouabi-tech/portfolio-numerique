@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langage C | Portfolio Feryel Zouabi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060812;
+            --card: rgba(17, 24, 43, 0.75);
+            --cyan: #00f2fe;
+            --blue: #4facfe;
+            --purple: #a855f7;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(0, 242, 254, 0.22);
+            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(0, 242, 254, 0.12) 0%, transparent 45%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(6, 8, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { color: var(--cyan); font-weight: 600; font-size: 0.9rem; }
+
+        .box {
+            background: var(--card); backdrop-filter: blur(16px);
+            border: 1px solid var(--border); border-radius: 18px; padding: 2.2rem; margin-bottom: 2rem;
+        }
+        h1 { font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 800; color: #fff; }
+        .grad { background: linear-gradient(90deg, var(--purple), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { color: var(--cyan); margin: 1.8rem 0 0.8rem; font-size: 1.3rem; }
+        h3 { color: #c084fc; margin: 1.2rem 0 0.5rem; font-size: 1.05rem; }
+        p, li { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.6rem; }
+        ul { padding-left: 1.2rem; margin-bottom: 1rem; }
+
+        pre {
+            background: #03050a; color: #e2e8f0; padding: 1.2rem; border-radius: 12px;
+            overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem;
+            border: 1px solid rgba(168, 85, 247, 0.3); margin: 1rem 0;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.9rem; }
+        th, td { padding: 0.9rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--muted); }
+        th { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+        td b { color: #fff; }
+
+        .ia-box {
+            background: var(--card); border: 1px solid rgba(168, 85, 247, 0.35);
+            border-left: 4px solid var(--purple); border-radius: 16px; padding: 1.8rem; margin: 3rem 0;
+        }
+        .ia-box h3 { color: #c084fc; margin-bottom: 1rem; }
+        .ia-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.88rem; }
+        .ia-grid strong { color: #fff; display: block; margin-bottom: 3px; }
+        
+        footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-content">
+            <a href="../index.html" class="back-btn">← Retour à l'accueil</a>
+            <span style="font-size: 0.85rem; color: var(--muted);">Module : Développement (UE 2)</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Section 1 : Introduction -->
+        <div class="box">
+            <h1>Module : <span class="grad">Programmation en Langage C</span></h1>
+            <p>Le langage C est la base de la programmation procédurale et de l'architecture logicielle. Ce module présente les structures de contrôle, la manipulation des tableaux et l'utilisation des fonctions à travers des programmes testés sous GCC.</p>
+
+            <h2>⚙️ 3 Programmes Fondamentaux</h2>
+
+            <h3>1. Affichage et Conditions (Gestion des notes)</h3>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float moyenne;
+    printf("Entrez votre moyenne générale : ");
+    scanf("%f", &moyenne);
+
+    if (moyenne >= 10.0) {
+        printf("Admis(e) ! Excellent travail.\n");
+    } else {
+        printf("Ajustement nécessaire au prochain semestre.\n");
+    }
+    return 0;
+}</code></pre>
+
+            <h3>2. Tableaux et Boucles (Calcul de la valeur maximale)</h3>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int notes[5] = {12, 15, 9, 18, 14};
+    int max = notes[0];
+
+    for(int i = 1; i < 5; i++) {
+        if(notes[i] > max) {
+            max = notes[i];
+        }
+    }
+    printf("La note maximale est : %d\n", max);
+    return 0;
+}</code></pre>
+
+            <h3>3. Utilisation des Fonctions (Calcul du carré)</h3>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int carre(int nombre) {
+    return nombre * nombre;
+}
+
+int main() {
+    int x = 6;
+    printf("Le carré de %d est %d\n", x, carre(x));
+    return 0;
+}</code></pre>
+        </div>
+
+        <!-- Section 2 : Comparatif -->
+        <div class="box">
+            <h2>📊 Tableau Comparatif : Python vs Langage C</h2>
+            <table>
+                <tr>
+                    <th>Caractéristique</th>
+                    <th>Python</th>
+                    <th>Langage C</th>
+                </tr>
+                <tr>
+                    <td><b>Typage</b></td>
+                    <td>Dynamique</td>
+                    <td>Statique</td>
+                </tr>
+                <tr>
+                    <td><b>Syntaxe</b></td>
+                    <td>Simple (sans points-virgules)</td>
+                    <td>Rigoureuse (utilisation de `{}` et `;`)</td>
+                </tr>
+                <tr>
+                    <td><b>Gestion mémoire</b></td>
+                    <td>Automatique (Garbage Collector)</td>
+                    <td>Manuelle (Pointeurs / malloc / free)</td>
+                </tr>
+                <tr>
+                    <td><b>Exécution</b></td>
+                    <td>Interprété</td>
+                    <td>Compilé (via GCC)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Fiche Transparence IA -->
+        <aside class="ia-box">
+            <h3>🤖 Fiche Transparence IA — Langage C</h3>
+            <div class="ia-grid">
+                <div><strong>Outils utilisés :</strong><p>VS Code, Compilateur GCC, ChatGPT (structuration des codes C).</p></div>
+                <div><strong>Rôle de l'IA :</strong><p>Aide à l'écriture des syntaxes de base et formatage du tableau comparatif.</p></div>
+                <div><strong>Réalisation personnelle :</strong><p>Compilation des codes sous terminal, tests des conditions et intégration du contenu.</p></div>
+                <div><strong>Sources vérifiées :</strong><p>TPs de structures de données et algorithmique (ISET Nabeul).</p></div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026–2027 Feryel Zouabi — Technologie de l'Informatique (ISET Nabeul)</p>
+        </div>
+    </footer>
+</body>
+</html>

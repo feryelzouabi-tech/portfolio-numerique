@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture & Électronique | Portfolio Feryel Zouabi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060812;
+            --card: rgba(17, 24, 43, 0.75);
+            --cyan: #00f2fe;
+            --blue: #4facfe;
+            --purple: #a855f7;
+            --pink: #ec4899;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(0, 242, 254, 0.22);
+            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(0, 242, 254, 0.12) 0%, transparent 45%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(6, 8, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { color: var(--cyan); font-weight: 600; font-size: 0.9rem; }
+
+        .box {
+            background: var(--card); backdrop-filter: blur(16px);
+            border: 1px solid var(--border); border-radius: 18px; padding: 2.2rem; margin-bottom: 2rem;
+        }
+        h1 { font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 800; color: #fff; }
+        .grad { background: linear-gradient(90deg, var(--purple), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { color: var(--cyan); margin: 1.8rem 0 0.8rem; font-size: 1.3rem; }
+        h3 { color: #c084fc; margin: 1.2rem 0 0.5rem; font-size: 1.05rem; }
+        p, li { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.6rem; }
+        ul { padding-left: 1.2rem; margin-bottom: 1rem; }
+
+        .ia-box {
+            background: var(--card); border: 1px solid rgba(168, 85, 247, 0.35);
+            border-left: 4px solid var(--purple); border-radius: 16px; padding: 1.8rem; margin: 3rem 0;
+        }
+        .ia-box h3 { color: #c084fc; margin-bottom: 1rem; }
+        .ia-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.88rem; }
+        .ia-grid strong { color: #fff; display: block; margin-bottom: 3px; }
+        
+        footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-content">
+            <a href="../index.html" class="back-btn">← Retour à l'accueil</a>
+            <span style="font-size: 0.85rem; color: var(--muted);">Module : Systèmes (UE 3)</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Section 1 : Introduction -->
+        <div class="box">
+            <h1>Module : <span class="grad">Architecture & Électronique Embarquée</span></h1>
+            <p>Ce module explore la structure interne d'un ordinateur, les composants matériels (CPU, mémoire, carte mère) ainsi que les bases de l'électronique embarquée (simulation de circuits).</p>
+
+            <h2>🔌 Composants Clés et Circuits</h2>
+            <ul>
+                <li><strong>Unité Centrale de Traitement (CPU) :</strong> Le "cerveau" de l'ordinateur qui exécute les instructions des programmes (arithmétique, logique).</li>
+                <li><strong>Mémoire Vive (RAM) :</strong> Mémoire volatile de stockage rapide utilisée par le processeur lors de l'exécution des tâches.</li>
+                <li><strong>Électronique Numérique :</strong> Étude des portes logiques (AND, OR, NOT) et simulation de microcontrôleurs (type Arduino / Wokwi).</li>
+            </ul>
+        </div>
+
+        <!-- Fiche Transparence IA -->
+        <aside class="ia-box">
+            <h3>🤖 Fiche Transparence IA — Architecture & Électronique</h3>
+            <div class="ia-grid">
+                <div><strong>Outils utilisés :</strong><p>Simulateur Wokwi, ChatGPT (synthèse des composants matériels).</p></div>
+                <div><strong>Rôle de l'IA :</strong><p>Aide à la structuration claire des définitions de l'architecture matérielle.</p></div>
+                <div><strong>Réalisation personnelle :</strong><p>Vérification des schémas de circuits et adaptation du contenu pour le portfolio.</p></div>
+                <div><strong>Sources vérifiées :</strong><p>Cours d'Électronique Embarquée et Architecture des Ordinateurs (ISET Nabeul).</p></div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026–2027 Feryel Zouabi — Technologie de l'Informatique (ISET Nabeul)</p>
+        </div>
+    </footer>
+</body>
+</html>
